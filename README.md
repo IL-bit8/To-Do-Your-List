@@ -1,2 +1,5 @@
 # To-Do-Your-List
-a small app for the computer lover but have their procrastination
+A small app for the computer lover but have their procrastination
+
+# Usage
+Click the *Start* button to add new task alarm clock.
