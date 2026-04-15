@@ -13,7 +13,8 @@ class ToDoListApp:
         self.label = tk.Label(self.window, text="Welcome to To-Do Your List!", font=("Arial", 32))
         self.label.pack(pady=20)
         # 加入第一次按钮被按下的文本框
-        self.scrolled_text = None
+        self.scrolled_text = scrolledtext.ScrolledText(self.window, wrap=tk.WORD, font=("Consolas", 12), width=50, height=10)
+        self.scrolled_text.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
         # 加入第一次按下的判断
         self.cliked_bool = False
 
@@ -42,10 +43,24 @@ class ToDoListApp:
         if content.isdigit():  # 判断是否非负整数
             self.cliked_bool = True
             self.user_input_buff = int(content)
+            self._start_auto_countdown() 
         else:
             self.scrolled_text.insert(tk.END, "请输入有效的整数秒数！\n")
             self.scrolled_text.see(tk.END)
             self.cliked_bool = False
+    def _start_auto_countdown(self):
+        """自动倒计时，每秒减少 user_input_buff，到0时响铃"""
+        if self.user_input_buff > 0:
+            self.scrolled_text.insert(tk.END, f"剩余 {self.user_input_buff} 秒\n")
+            self.scrolled_text.see(tk.END)
+            self.user_input_buff -= 1
+            # 1秒后再调用自己
+            self.window.after(1000, self._start_auto_countdown)
+        else:
+            # 倒计时结束，响铃
+            self.scrolled_text.insert(tk.END, "时间到！蜂鸣器响！\n")
+            self.scrolled_text.see(tk.END)
+            winsound.Beep(1000, 1000)
     #加入倒计时计算
     def time_last(self):
         if self.time == 0:
@@ -59,6 +74,7 @@ class ToDoListApp:
             if (self.user_input_buff - last_time) <= 0:
                 self.buzzer(time_up=True)
                 self.scrolled_text.insert(tk.END, "时间到，我开始响铃了！\n")
+                winsound.Beep(1000, 1000)
 
             else:
                 self.buzzer(time_up=False)
@@ -77,9 +93,6 @@ class ToDoListApp:
     def if_cliked(self,scrolled_text=None):
         if self.cliked_bool == False:
             return
-        if self.scrolled_text == None:
-            self.scrolled_text = scrolledtext.ScrolledText(self.window, wrap=tk.WORD, font=("Consolas", 100), width=40, height=10)
-            self.scrolled_text.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
         self.time_last()
         self.scrolled_text.insert(tk.END, "按钮被按下了！\n")
         self.scrolled_text.see(tk.END)
