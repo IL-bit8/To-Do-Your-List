@@ -1,0 +1,13 @@
+title=欢迎使用待办事项清单！
+button_start=开始一个代办事项
+button_if_click=判断是否点击按钮
+button_quit=结束
+label_user_input=请输入任务内容,时间:
+invalid_input=请输入有效的整数秒数！
+time_left=剩余 {} 秒
+time_up_buzzer=时间到！蜂鸣器响！
+time_elapsed=距离上次按钮被按下已经过去了 {} 秒！
+time_behind=距离设定完成还剩已经过去了 {} 秒！
+time_up_ring=时间到，我开始响铃了！
+time_up=时间到！
+button_pressed=按钮被按下了！

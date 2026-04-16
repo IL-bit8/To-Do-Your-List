@@ -1,0 +1,13 @@
+title=Welcome to To-Do Your List!
+button_start=Start a To-Do
+button_if_click=Check if press button
+button_quit=Quit
+label_user_input=Please input task content, time:
+invalid_input=Please input valid integer as time!
+time_left= {} seconds left
+time_up_buzzer=Time's up! Buzzer Buzz!
+time_elapsed={} seconds have passed since the button was last pressed!
+time_behind={} seconds have elapsed until the setting is complete!
+time_up_ring=Time's up! I am going to ring!
+time_up=Time's up!
+button_pressed=Button is pressed!
