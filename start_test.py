@@ -95,7 +95,7 @@ class ToDoListApp:
         if not name:
             messagebox.showerror("Blank Input", "Please input task name")
             return
-        int_h = int_m = int_s = 0;
+        int_h = int_m = int_s = 0
         try:
             int_h = int(h)
             int_m = int(m)
