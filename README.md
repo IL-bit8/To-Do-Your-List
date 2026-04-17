@@ -2,7 +2,14 @@
 a small app for the computer lover but have their procrastination
 
 # Usage
-Click the *Start* button to add new task alarm clock.
+Click the *Start a To-Do* button to add new To-Do task.
+
+Click the *Check if press button* button to see when you last pressed the button.
+
+# Configurable
+You can choose your preferred language.
+
+You can choose your favorite ringtone.
 
 ## 1. Graphical Abstract
 ![系统架构与用例概览](./docs/abstract.png)

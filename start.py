@@ -1,14 +1,26 @@
 import os
 import tkinter as tk
+from tkinter import ttk
 from tkinter import scrolledtext
 import time # 记录时间
 import winsound
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-class Config:
+class Config(dict):
     def __init__(self):
-        self.selected_lang = Language("zh.txt")
+        with open(base_dir + "/config.txt", 'r', encoding='utf-8') as f:
+            for line in f:
+                key, value = line.split('=');
+                self[key] = value.strip()
+        self.selected_lang = Language(self["selected_lang"])
+        ringtone = self["selected_ringtone"]
+        self.selected_ringtone = None if ringtone == "default" else Ringtone(ringtone)
+    
+    def save(self):
+        with open(base_dir + "/config.txt", 'w', encoding='utf-8') as f:
+            for key in self:
+                f.write(f"{ key }={ self[key] }\n")
 
 class Language(dict):
     def __init__(self, file):
@@ -17,11 +29,18 @@ class Language(dict):
                 key, value = line.split('=');
                 self[key] = value.strip()
 
+class Ringtone:
+    def __init__(self, file):
+        self.name = file
+        self.file = base_dir + "/sounds/" + file
+
 class ToDoListApp:
     def __init__(self):
         self.config = Config()
 
         self.lang = self.config.selected_lang
+        with os.scandir(base_dir + "/sounds") as files:
+            self.ringtone_list = ["default"] + [file.name for file in files if file.is_file() and file.name.endswith(".wav")]
 
         self.window = tk.Tk()
         self.window.title("To-Do Your List")
@@ -38,22 +57,42 @@ class ToDoListApp:
         # 记录时间
         self.time = 0
 
+        tk.Label(self.window, text=self.translate("set_language"), font=("Arial", 14)).pack(pady=5)
+        self.lang_combobox = ttk.Combobox(self.window, values=["zh", "en"])
+        self.lang_combobox.current(0)
+        self.lang_combobox.pack(pady=10)
+        self.lang_combobox.bind("<<ComboboxSelected>>", self.on_set_lang)
+
+        tk.Label(self.window, text=self.translate("set_ringtone"), font=("Arial", 14)).pack(pady=5)
+        self.ringtone_combobox = ttk.Combobox(self.window, values=self.ringtone_list)
+        self.ringtone_combobox.current(0)
+        self.ringtone_combobox.pack(pady=10)
+        self.ringtone_combobox.bind("<<ComboboxSelected>>", self.on_set_ringtone)
+
         self.button_start = tk.Button(self.window, text=self.translate("button_start"), command=self.get_input)
         self.button_if_click = tk.Button(self.window, text=self.translate("button_if_click"), command=self.if_clicked)
         self.button_end = tk.Button(self.window, text=self.translate("button_quit"), command=self.window.quit)
         # 用户命令行输入
         self.user_input_label = tk.Label(self.window, text=self.translate("label_user_input"), font=("Arial", 14))
+        self.user_input_label.pack(pady=(10,0))
         self.user_input_buff = 0
 
         self.task_entry = tk.Entry(self.window, font=("Arial", 14), width=30)
         self.task_entry.pack(pady=5)
 
-        self.user_input_label.pack(pady=(10,0))
         self.button_start.pack(pady=20)
         self.button_if_click.pack(pady=20)
         self.button_end.pack(pady=20)
         # 启动主循环
         self.window.mainloop()
+
+    def on_set_lang(self, event):
+        self.config["selected_lang"] = event.widget.get() + ".txt"
+        self.config.save()
+    
+    def on_set_ringtone(self, event):
+        self.config["selected_ringtone"] = event.widget.get()
+        self.config.save()
 
     def get_input(self):
         # 获取从 "1.0" (第一行第0个字符) 到 tk.END (文本末尾) 的所有内容
@@ -119,8 +158,8 @@ class ToDoListApp:
         self.scrolled_text.see(tk.END)
     
     def translate(self, key, *args):
-        return self.lang[key].format(*args)
-
+        return self.lang[key].format(*args) if key in self.lang else key
+    
 
 if __name__ == "__main__":
     app = ToDoListApp()

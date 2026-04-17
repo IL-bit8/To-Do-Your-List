@@ -1,1 +1,2 @@
 selected_lang=zh.txt
+selected_ringtone=default
