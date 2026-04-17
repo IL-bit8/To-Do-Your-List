@@ -46,3 +46,4 @@ Click the *Start* button to add new task alarm clock.
 ![类图](./docs/classdiagram.png)
 
 ## 5. 外部引用声明
+![外部引用声明](./docs/reference.md)

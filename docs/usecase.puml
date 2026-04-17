@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+actor "用户" as User
+
+rectangle "待办工具" {
+  User --> (创建待办)
+  User --> (查看待办列表)
+  User --> (删除待办) # 当前版本未实现，但可预留
+  User --> (选择自定义提示音)
+  (创建待办) ..> (输入任务名称) : <<include>>
+  (创建待办) ..> (设置倒计时时间) : <<include>>
+  (创建待办) ..> (选择提示音) : <<extend>>
+  (倒计时结束) --> (播放提示音)
+}
+@enduml
