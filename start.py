@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter import scrolledtext
 import time # 记录时间
 import winsound
+import threading
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -41,9 +42,10 @@ class ToDoListApp:
     def __init__(self):
         self.config = Config()
 
+        self.languages = {"English":"en", "中文":"zh"}
         self.lang = self.config.selected_lang
         with os.scandir(base_dir + "/sounds") as files:
-            self.ringtone_list = ["default"] + [file.name for file in files if file.is_file() and file.name.endswith(".wav")]
+            self.ringtone_list = [file.name for file in files if file.is_file() and file.name.endswith(".wav")] + ["default"]
         
         self.translable_widgets = {}
 
@@ -63,7 +65,7 @@ class ToDoListApp:
         self.time = 0
 
         self.translable_widget(tk.Label(self.window, font=("Arial", 14)), "set_language").pack(pady=5)
-        self.lang_combobox = ttk.Combobox(self.window, values=["zh", "en"])
+        self.lang_combobox = ttk.Combobox(self.window, values=[key for key in self.languages])
         self.lang_combobox.current(0)
         self.lang_combobox.pack(pady=10)
         self.lang_combobox.bind("<<ComboboxSelected>>", self.on_set_lang)
@@ -91,8 +93,16 @@ class ToDoListApp:
         # 启动主循环
         self.window.mainloop()
 
+    def translable_widget(self, widget: tk.Label | tk.Button, key, *args):
+        widget.config(text=self.translate(key, *args))
+        self.translable_widgets[widget] = (key, args)
+        return widget
+
+    def translate(self, key, *args):
+        return self.lang[key].format(*args) if key in self.lang else key
+
     def on_set_lang(self, event):
-        self.config["selected_lang"] = event.widget.get() + ".txt"
+        self.config["selected_lang"] = self.languages[event.widget.get()] + ".txt"
         self.config.save()
         self.config.load()
         self.lang = self.config.selected_lang
@@ -106,7 +116,7 @@ class ToDoListApp:
         self.config.load()
 
     def get_input(self):
-        # 获取从 "1.0" (第一行第0个字符) 到 tk.END (文本末尾) 的所有内容
+        """获取从 "1.0" (第一行第0个字符) 到 tk.END (文本末尾) 的所有内容"""
         content = self.task_entry.get()
         if content.isdigit():  # 判断是否非负整数
             self.clicked_bool = True
@@ -118,7 +128,7 @@ class ToDoListApp:
             self.clicked_bool = False
 
     def start_auto_countdown(self):
-        # 自动倒计时，每秒减少 user_input_buff，到0时响铃
+        """自动倒计时，每秒减少user_input_buff，到0时响铃"""
         if self.user_input_buff > 0:
             self.scrolled_text.insert(tk.END, self.translate("time_left", self.user_input_buff) + "\n")
             self.scrolled_text.see(tk.END)
@@ -129,7 +139,11 @@ class ToDoListApp:
             # 倒计时结束，响铃
             self.scrolled_text.insert(tk.END, self.translate("time_up_buzzer") + "\n")
             self.scrolled_text.see(tk.END)
-            winsound.Beep(1000, 1000)
+            ringtone = self.config.selected_ringtone
+            if ringtone:
+                winsound.PlaySound(ringtone.file, winsound.SND_FILENAME | winsound.SND_ASYNC)
+            else:
+                threading.Thread(target=winsound.Beep, args=(1000, 1000)).start()
 
     #加入倒计时计算
     def time_last(self):
@@ -161,20 +175,12 @@ class ToDoListApp:
             self.window.after(1000, lambda: self.buzzer(time_up))  # 每隔1秒调用一次buzzer函数
 
     # 加入按钮就开始生成日志文本-倒计时
-    def if_clicked(self,scrolled_text=None):
+    def if_clicked(self):
         if self.clicked_bool == False:
             return
         self.time_last()
         self.scrolled_text.insert(tk.END, self.translate("button_pressed") + "\n")
         self.scrolled_text.see(tk.END)
-
-    def translable_widget(self, widget: tk.Label | tk.Button, key, *args):
-        widget.config(text=self.translate(key, *args))
-        self.translable_widgets[widget] = (key, args)
-        return widget
-
-    def translate(self, key, *args):
-        return self.lang[key].format(*args) if key in self.lang else key
 
 
 class ToDo:
