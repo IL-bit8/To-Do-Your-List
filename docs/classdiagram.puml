@@ -1,0 +1,37 @@
+@startuml
+class ToDo {
+  - window : tk.Tk
+  - name : str
+  - time : int
+  - times_up : bool
+  - sound : callable
+  - thread : threading.Thread
+  + __init__(window, name, time, audio)
+  + __str__() : str
+  + process_timer()
+}
+
+class ToDoListApp {
+  - window : tk.Tk
+  - to_do_list : list
+  - to_do_listbox : tk.Listbox
+  + __init__()
+  + loop()
+  + create_to_do_window()
+  + open_file(label_audio)
+  + create_to_do(name, audio, h, m, s)
+}
+
+class threading.Thread {
+  + start()
+}
+
+class winsound {
+  + {static} Beep(freq, duration)
+  + {static} PlaySound(sound, flags)
+}
+
+ToDoListApp --> "1..*" ToDo : contains
+ToDo --> threading.Thread : uses
+ToDo --> winsound : uses (via sound callable)
+@enduml

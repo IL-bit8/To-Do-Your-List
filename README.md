@@ -53,3 +53,4 @@ You can choose your favorite ringtone.
 ![类图](./docs/classdiagram.png)
 
 ## 5. 外部引用声明
+![外部引用声明](./docs/reference.md)
