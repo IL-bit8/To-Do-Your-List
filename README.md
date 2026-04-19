@@ -29,13 +29,13 @@ You can choose your favorite *ringtone*.
 | Name | Task | Workload Percentage |
 |-------|---------------------|------------|
 | Liu Hao | Framework design, testing, and documentation | 50% |
-| Xu Junheng | Content implementation and improvement, promotion / backend  | 50% |
+| HOI CHON HANG | Content implementation and improvement, promotion / backend  | 50% |
 
 ### 3.2 Sprint Schedule
 ![sprint.md](./docs/sprint.png)
 
 ### 3.3 Current Status and Future Plans
-- **Current**: Functional testing integration completed; next steps: work on README, complete documentation, and create a demo video.
+- **Current**: Functional testing integration completed; next steps: work on README, complete documentation.
 - **Future**: Add to‑do list sharing functionality with real‑time Markdown preview.
 
 ## 4. System Design Model
