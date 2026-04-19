@@ -1,10 +1,10 @@
-| Sprint 编号 | 目标                         | 开发者编号 | 任务                          | 负责人   | 预估工时 | 状态       |
-|-------------|------------------------------|--------------|-------------------------------|----------|----------|------------|
-| Sprint 1    | 设计待办工具框架并初始化   | US-02 | 实现初始化Tkinter开发，框架设计构              | 刘灏     | 4h       | ✅ 已完成   |
-| Sprint 2    | Tkinter控件按钮生成与开发   | US-01 | 设计tk按钮并实现基础功能            | 許駿恆    | 4h       | ✅ 已完成   |
-| Sprint 3    | Tkinter控件按钮逻辑实现   | US-02 | 设计tk按钮并实现基础功，添加了蜂鸣器            | 刘灏    | 4h       | ✅ 已完成   |
-| Sprint 4    | Tkinter控件按钮逻辑实现优化   | US-01 | 优化tk控件和布局按钮提交了新功能            | 許駿恆    | 4h       | ✅ 已完成   |
-| Sprint 5    | Tkinter控件按钮验证功能测试   | US-02 | 测试功能的集成            | 刘灏    | 4h       | ✅ 已完成   |
-| Sprint 6    | 文档的编写和完善   | US-01，US-02 | 编写工作空间下的readme和doc文件，响铃素材收集            | 許駿恆，刘灏    | 8h       | 🔄 进行中   |
-| Sprint 7    | Tkinter控件后续完善和封装   | US-01 | 维护并接收后续用户的体验            | 許駿恆    | 4h       | ⏳ 待完成   |
-| Sprint 8    | Tkinter控件后续完善和封装   | US-02 | 分析后续用户的体并迭代优化            | 刘灏    | 4h       | ⏳ 待完成   |
+| Sprint ID | Goal                                      | User Story ID | Task                                                              | Owner           | Estimated Hours | Status       |
+|-----------|-------------------------------------------|---------------|-------------------------------------------------------------------|-----------------|-----------------|--------------|
+| Sprint 1  | Design and initialize to‑do tool framework | US-02         | Implement initial Tkinter development, framework design structure | Liu Hao         | 4h              | ✅ Completed   |
+| Sprint 2  | Tkinter widget button generation & development | US-01         | Design tk button and implement basic functions                   | Xu Junheng      | 4h              | ✅ Completed   |
+| Sprint 3  | Tkinter widget button logic implementation | US-02         | Design tk button and implement basic functions, added buzzer     | Liu Hao         | 4h              | ✅ Completed   |
+| Sprint 4  | Tkinter widget button logic optimization | US-01         | Optimized tk widgets and layout buttons, submitted new features  | Xu Junheng      | 4h              | ✅ Completed   |
+| Sprint 5  | Tkinter widget button validation testing | US-02         | Test function integration                                         | Liu Hao         | 4h              | ✅ Completed   |
+| Sprint 6  | Documentation writing and improvement   | US-01, US-02  | Write readme and doc files in workspace, collect ringtone materials | Xu Junheng, Liu Hao | 8h        | 🔄 In Progress |
+| Sprint 7  | Tkinter widget follow‑up improvement & packaging | US-01   | Maintain and collect subsequent user feedback                    | Xu Junheng      | 4h              | ⏳ Pending     |
+| Sprint 8  | Tkinter widget follow‑up improvement & packaging | US-02   | Analyze subsequent user experience and iterate improvements      | Liu Hao         | 4h              | ⏳ Pending     |

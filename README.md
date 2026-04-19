@@ -28,26 +28,31 @@ You can choose your favorite *ringtone*.
 ### 3.1 Team member roles and division of labor
 | Name | Task | Workload Percentage |
 |-------|---------------------|------------|
-| 刘灏 | 框架设计和测试与文档 | 50% |
-| 許駿恆 | 内容实现和完善与宣传 / 后端 | 50% |
+| Liu Hao | Framework design, testing, and documentation | 50% |
+| Xu Junheng | Content implementation and improvement, promotion / backend  | 50% |
 
 ### 3.2 Sprint Schedule
 ![用例图](./docs/sprint.md)
 
-### 3.3 Core Algorithm Brief
-- 使用 **bcrypt** 进行密码哈希加盐存储。
-- 笔记搜索采用 **TF-IDF** 进行关键词匹配（引用 `scikit-learn` 库）。
-
-### 3.4 Current Status and Future Plans
-- **Current**: 功能测试集成完毕，后续处理readme，文档补全和演示视频。
-- **Future**: 增加To-do-list分享功能，支持 Markdown 实时预览。
+### 3.3 Current Status and Future Plans
+- **Current**: Functional testing integration completed; next steps: work on README, complete documentation, and create a demo video.
+- **Future**: Add to‑do list sharing functionality with real‑time Markdown preview.
 
 ## 4. System Design Model
-### 用例图
+### Use Case Diagram
 ![用例图](./docs/usecase.png)
 
-### 类图
+### Class Diagram
 ![类图](./docs/classdiagram.png)
+
+## 5. Reference
+
+HOW TO USE:
+Firstly get into the "TO-DO-YOUR-LIST".Then, in Termainal, input 
+```python
+python start.py
+```
+you can use it.
 
 ## 5. Reference
 ![外部引用声明](./docs/reference.md)
