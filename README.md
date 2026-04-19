@@ -12,7 +12,7 @@ You can choose your preferred *language*.
 You can choose your favorite *ringtone*.
 
 ## 1. Graphical Abstract
-![系统架构与用例概览](./docs/abstract.png)
+![abstract.png](./docs/abstract.png)
 
 ## 2. Purpose of the Software
 - **Development process selection**：We use **Agile (Scrum)** instead of the waterfall model because the requirements for note-taking tools iterate rapidly based on user feedback (e.g., inputting to-do names, countdown timers, alarm countdowns, Markdown support for documents, etc.). Agile development allows us to deliver a usable incremental version every 1-2 days.
@@ -32,7 +32,7 @@ You can choose your favorite *ringtone*.
 | Xu Junheng | Content implementation and improvement, promotion / backend  | 50% |
 
 ### 3.2 Sprint Schedule
-![用例图](./docs/sprint.md)
+![sprint.md](./docs/sprint.png)
 
 ### 3.3 Current Status and Future Plans
 - **Current**: Functional testing integration completed; next steps: work on README, complete documentation, and create a demo video.
@@ -40,10 +40,10 @@ You can choose your favorite *ringtone*.
 
 ## 4. System Design Model
 ### Use Case Diagram
-![用例图](./docs/usecase.png)
+![usecase.png](./docs/usecase.png)
 
 ### Class Diagram
-![类图](./docs/classdiagram.png)
+![classdiagram.png](./docs/classdiagram.png)
 
 ## 5. Reference
 
@@ -55,4 +55,4 @@ python start.py
 you can use it.
 
 ## 5. Reference
-![外部引用声明](./docs/reference.md)
+![reference.md](./docs/reference.png)
