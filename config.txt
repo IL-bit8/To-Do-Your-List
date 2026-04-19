@@ -1,2 +1,2 @@
-selected_lang=zh.txt
+selected_lang=en.txt
 selected_ringtone=199 Roses - Wu Bai & China Blue.wav
